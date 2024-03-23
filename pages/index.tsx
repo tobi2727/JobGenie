@@ -15,7 +15,7 @@ const Home: NextPage = () => {
   const aiDescRef = useRef<null | HTMLDivElement>(null);
 
   const DELIMITER_AI_TITLE = "Stellenbezeichnung:";
-  const DELIMITER_AI_DESCRIPTION = "Aufgaben (in Stichpunkten):";
+  const DELIMITER_AI_DESCRIPTION = "";
 
   const scrollToAIDescs = () => {
     if (aiDescRef.current !== null) {
