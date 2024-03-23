@@ -15,7 +15,7 @@ const Home: NextPage = () => {
   const aiDescRef = useRef<null | HTMLDivElement>(null);
 
   const DELIMITER_AI_TITLE = "Stellenbezeichnung:";
-  const DELIMITER_AI_DESCRIPTION = "";
+  const DELIMITER_AI_DESCRIPTION = "Stellenbeschreibung:";
 
   const scrollToAIDescs = () => {
     if (aiDescRef.current !== null) {
@@ -23,7 +23,7 @@ const Home: NextPage = () => {
     }
   };
 
-  const prompt = `Erstelle eine Stellenbeschreibung für eine Stellenanzeige mit circa 200 Wörtern, für eine vakante Stelle als ${userInput}`;
+  const prompt = `Erstelle eine Stellenbeschreibung für eine Stellenanzeige mit circa 200 Wörtern, für eine vakante Stelle als ${userInput}.`;
 
   const generateAiTitleDesc = async (e: any) => {
     e.preventDefault();
