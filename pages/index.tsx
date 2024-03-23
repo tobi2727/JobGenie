@@ -14,8 +14,8 @@ const Home: NextPage = () => {
 
   const aiDescRef = useRef<null | HTMLDivElement>(null);
 
-  const DELIMITER_AI_TITLE = "Product Title:";
-  const DELIMITER_AI_DESCRIPTION = "Product Description:";
+  const DELIMITER_AI_TITLE = "Stellenbezeichnung:";
+  const DELIMITER_AI_DESCRIPTION = "Aufgaben (in Stichpunkten):";
 
   const scrollToAIDescs = () => {
     if (aiDescRef.current !== null) {
@@ -23,7 +23,7 @@ const Home: NextPage = () => {
     }
   };
 
-  const prompt = `Generate a product title (short and clever prefixed with "Product Title:") and product description (approx 300 words prefixed with "Product Description:" ) from this rough product description: ${userInput}`;
+  const prompt = `Erstelle eine Stellenbeschreibung für eine Stellenanzeige mit circa 200 Wörtern, für eine vakante Stelle als ${userInput}`;
 
   const generateAiTitleDesc = async (e: any) => {
     e.preventDefault();
@@ -35,7 +35,7 @@ const Home: NextPage = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        prompt,
+        prompt, 
       }),
     });
 
@@ -66,7 +66,7 @@ const Home: NextPage = () => {
   return (
     <div className="flex max-w-5xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
       <Head>
-        <title>Product Genie</title>
+        <title>Stellenbeschreibungen mit K.I. erzeugen</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -74,13 +74,13 @@ const Home: NextPage = () => {
       <main className="flex flex-1 w-full flex-col align-top items-center text-center p-4">
         <div className="max-w-xl w-full">
           <div className="flex mt-10 items-center space-x-3">
-            <p className="text-left font-medium">
-              What's your product idea?{" "}
-              <span className="text-slate-500">
-                (give some details of the product with no care for spelling or
-                sentences)
+            <p className="text-center font-bold">
+              Für welchen Beruf in welcher Branche möchten Sie eine Stellenbeschreibung erzeugen?{" "}
+              <span className="text-slate-400">
+                <br></br>
+                (Geben Sie eine Berufsbezeichnung und Branche/Tätigkeitsfeld ein)
               </span>
-              .
+              
             </p>
           </div>
           <textarea
@@ -89,21 +89,21 @@ const Home: NextPage = () => {
             rows={4}
             className="w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black my-5"
             placeholder={
-              "e.g. new Craft beer, hoppy, fresh, pacific northwest hops "
+              "z.B. Feinwerkmechanikerin in der Uhrenherstellung, Testingenieur in der Automobilindustrie, ..."
             }
           />
 
           {!loading && (
             <button
-              className="bg-cyan-600 rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-cyan-600/60 w-full"
+              className="bg-rose-900 rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-rose-900/60 w-full"
               onClick={(e) => generateAiTitleDesc(e)}
             >
-              Generate Product Title & Description &rarr;
+              Stellenbeschreibung generieren &rarr;
             </button>
           )}
           {loading && (
             <button
-              className="bg-cyan-600 rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-cyan-600/60 w-full"
+              className="bg-rose-900 rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-rose-900/60 w-full"
               disabled
             >
               <LoadingDots color="white" style="large" />
@@ -129,7 +129,7 @@ const Home: NextPage = () => {
                         className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border"
                         onClick={() => {
                           navigator.clipboard.writeText(aiResponse);
-                          toast("Copied to clipboard", {
+                          toast("In Zwischenablage kopiert", {
                             icon: "✂️",
                           });
                         }}
